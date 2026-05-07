@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef2f3;
+        }
+
+        .container {
+            width: 320px;
+            margin: 80px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+
+    <form onsubmit="return validateLogin()">
+
+        Username:
+        <input type="text" id="username">
+        <div class="error" id="userError"></div>
+
+        Password:
+        <input type="password" id="password">
+        <div class="error" id="passError"></div>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<script>
+    function validateLogin() {
+
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value;
+
+    let valid = true;
+
+    // Username pattern:
+    // 1 uppercase, 1 lowercase, 1 digit, 1 special char, min 8
+    let userPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\W_]).{8,}$/;
+
+    // Password pattern:
+    // 1 uppercase, 1 special char, min 8
+    let passPattern = /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+
+    // Username validation
+    if (!userPattern.test(username)) {
+        document.getElementById("userError").innerText =
+            "Username must contain uppercase, lowercase, number, special char & min 8 chars";
+        valid = false;
+    } else {
+        document.getElementById("userError").innerText = "";
+    }
+
+    // Password validation
+    if (!passPattern.test(password)) {
+        document.getElementById("passError").innerText =
+            "Password must contain uppercase, special char & min 8 chars";
+        valid = false;
+    } else {
+        document.getElementById("passError").innerText = "";
+    }
+
+    // Success alert
+    if (valid) {
+        alert("Login Successful!");
+    }
+
+    return valid;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS Demo</title>
+
+<!-- INTERNAL CSS -->
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f4f6f9;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 250px;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.internal {
+  color: blue;
+  font-weight: bold;
+}
+</style>
+
+<!-- EXTERNAL CSS -->
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h1 style="text-align:center;">CSS Types Demo</h1>
+
+<div class="container">
+
+  <!-- INLINE CSS -->
+  <div class="card">
+    <h2>Inline CSS</h2>
+    <p style="color:red; font-weight:bold;">
+      This text is styled using Inline CSS
+    </p>
+  </div>
+
+  <!-- INTERNAL CSS -->
+  <div class="card">
+    <h2>Internal CSS</h2>
+    <p class="internal">
+      This text is styled using Internal CSS
+    </p>
+  </div>
+
+  <!-- EXTERNAL CSS -->
+  <div class="card">
+    <h2>External CSS</h2>
+    <p class="external">
+      This text is styled using External CSS
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
+.external {
+  color: green;
+  font-weight: bold;
+  font-style: italic;
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+<style>
+body{
+    font-family: Arial;
+    background:#f4f4f4;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 0 10px lightgray;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid gray;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:blue;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:darkblue;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th, td{
+    border:1px solid gray;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:black;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card p-4 shadow" style="max-width:400px; margin:auto;">
+    <h3 class="text-center">User Registration</h3>
+
+    <form id="form">
+      <input class="form-control mb-2" id="name" placeholder="Name" required>
+      <input class="form-control mb-2" id="email" placeholder="Email" required>
+      <input class="form-control mb-2" id="phone" placeholder="Phone" required>
+
+      <button class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+    // Array (optional but good for viva)
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let user = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value
+    };
+
+    // Push into array
+    users.push(user);
+
+    // Save in localStorage
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // Simulate AJAX POST
+    fakePost(user);
+
+    // Redirect to display page
+    window.location.href = "display.html";
+});
+
+
+// AJAX Simulation
+function fakePost(data) {
+
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log("POST Success:", result);
+    })
+    .catch(error => {
+        console.log("Error:", error);
+    });
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Users List</title>
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> -->
+</head>
+
+<body>
+
+<div class="container">
+  <h3>Registered Users</h3>
+
+  <table class="table table-bordered mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<script>
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let table = document.getElementById("tableBody");
+
+users.forEach((u, i) => {
+  table.innerHTML += `
+  <tr>
+    <td>${i+1}</td>
+    <td>${u.name}</td>
+    <td>${u.email}</td>
+    <td>${u.phone}</td>
+  </tr>`;
+});
+</script>
+
+</body>
+</html>

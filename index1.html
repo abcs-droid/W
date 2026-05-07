@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+/* Layout */
+body {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #1e1e2f;
+  color: white;
+  padding: 20px;
+  position: fixed;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.sidebar ul li:hover {
+  background: #007bff;
+  border-radius: 5px;
+}
+
+/* Main */
+.main {
+  margin-left: 220px;
+  width: 100%;
+  padding: 20px;
+  background: #f4f6f9;
+}
+
+/* Header */
+.header {
+  background: #333;
+  color: white;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+  color: white;
+  border-radius: 10px;
+}
+
+.blue { background: #007bff; }
+.green { background: #28a745; }
+.orange { background: #ffc107; color: black; }
+.red { background: #dc3545; }
+
+/* Table */
+.table-container {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #333;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+<!-- Sidebar -->
+<div class="sidebar">
+  <h2>Dashboard</h2>
+  <ul>
+    <li>Home</li>
+    <li>Students</li>
+    <li>Courses</li>
+    <li>Settings</li>
+  </ul>
+</div>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Header -->
+  <div class="header">
+    <h2>College Admin Dashboard</h2>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards">
+    <div class="card blue">Students<br><h2>500</h2></div>
+    <div class="card green">Courses<br><h2>20</h2></div>
+    <div class="card orange">Faculty<br><h2>50</h2></div>
+    <div class="card red">Pending<br><h2>10</h2></div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <h3>Student Data</h3>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Class</th>
+        <th>Roll No</th>
+        <th>Dept</th>
+      </tr>
+      <tr>
+        <td>Shivam</td>
+        <td>TE</td>
+        <td>307B011</td>
+        <td>IT</td>
+      </tr>
+      <tr>
+        <td>Anurag</td>
+        <td>TE</td>
+        <td>307A028</td>
+        <td>IT</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>

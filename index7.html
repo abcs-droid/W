@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  width: 300px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #00c6ff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0072ff;
+}
+
+.error {
+  color: yellow;
+  font-size: 12px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Login</h2>
+
+  <form onsubmit="return validateForm()">
+
+    <input type="text" id="username" placeholder="Username">
+    <div id="userError" class="error"></div>
+
+    <input type="password" id="password" placeholder="Password">
+    <div id="passError" class="error"></div>
+
+    <button>Login</button>
+
+  </form>
+</div>
+
+<script>
+
+function validateForm() {
+
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+
+  let userError = document.getElementById("userError");
+  let passError = document.getElementById("passError");
+
+  userError.innerHTML = "";
+  passError.innerHTML = "";
+
+  // Username validation regex
+  let userPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&*!]).{8,}$/;
+
+  // Password validation regex
+  let passPattern = /^(?=.*[A-Z])(?=.*[@#$%^&*!]).{8,}$/;
+
+  let valid = true;
+
+  if (!userPattern.test(username)) {
+    userError.innerHTML = "Username must have capital, small, number, special char & min 8 length";
+    valid = false;
+  }
+
+  if (!passPattern.test(password)) {
+    passError.innerHTML = "Password must have capital, special char & min 8 length";
+    valid = false;
+  }
+
+  if(valid){
+    alert("Login Successful ✅");
+  }
+
+  return valid;
+}
+
+</script>
+
+</body>
+</html>

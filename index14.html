@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef2f3;
+        }
+
+        .container {
+            width: 380px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: green;
+            color: white;
+            border: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Registration</h2>
+
+        <form onsubmit="return validateForm()">
+
+            Name:
+            <input type="text" id="name">
+            <div class="error" id="nameError"></div>
+
+            Password:
+            <input type="password" id="password">
+            <div class="error" id="passError"></div>
+
+            Email:
+            <input type="text" id="email">
+            <div class="error" id="emailError"></div>
+
+            Mobile:
+            <input type="text" id="mobile">
+            <div class="error" id="mobileError"></div>
+
+            Address:
+            <textarea id="address"></textarea>
+            <div class="error" id="addressError"></div>
+
+            <button type="submit">Register</button>
+
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+
+    let name = document.getElementById("name").value.trim();
+    let password = document.getElementById("password").value;
+    let email = document.getElementById("email").value.trim();
+    let mobile = document.getElementById("mobile").value.trim();
+    let address = document.getElementById("address").value.trim();
+
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let mobilePattern = /^[0-9]{10}$/;
+
+    let valid = true;
+
+    // Name
+    if (name === "") {
+        document.getElementById("nameError").innerText = "Name is required";
+        valid = false;
+    } else {
+        document.getElementById("nameError").innerText = "";
+    }
+
+    // Password
+    if (password.length < 6) {
+        document.getElementById("passError").innerText =
+            "Minimum 6 characters required";
+        valid = false;
+    } else {
+        document.getElementById("passError").innerText = "";
+    }
+
+    // Email
+    if (!emailPattern.test(email)) {
+        document.getElementById("emailError").innerText =
+            "Invalid email format";
+        valid = false;
+    } else {
+        document.getElementById("emailError").innerText = "";
+    }
+
+    // Mobile
+    if (!mobilePattern.test(mobile)) {
+        document.getElementById("mobileError").innerText =
+            "Enter valid 10 digit number";
+        valid = false;
+    } else {
+        document.getElementById("mobileError").innerText = "";
+    }
+
+    // Address
+    if (address === "") {
+        document.getElementById("addressError").innerText =
+            "Address is required";
+        valid = false;
+    } else {
+        document.getElementById("addressError").innerText = "";
+    }
+
+    // Success
+    if (valid) {
+        alert("Registration Successful!");
+    }
+
+    return valid;
+}
+    </script>
+
+</body>
+
+</html>
